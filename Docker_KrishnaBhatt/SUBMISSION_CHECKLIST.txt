@@ -1,0 +1,7 @@
+[ ] Run docker compose up --build
+[ ] Test frontend and backend
+[ ] Push code to GitHub
+[ ] Push both images to Docker Hub
+[ ] Replace YOUR_USERNAME in documentation/README
+[ ] Capture real Docker/Git/Docker Hub terminal output
+[ ] Submit Docker_KrishnaBhatt.zip only

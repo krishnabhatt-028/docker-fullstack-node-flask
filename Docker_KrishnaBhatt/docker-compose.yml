@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    image: krishnabhatt/docker-flask-backend:1.0
+    container_name: docker_assignment_backend
+    ports:
+      - "5000:5000"
+    networks: [app-network]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+    image: krishnabhatt/docker-node-frontend:1.0
+    container_name: docker_assignment_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      BACKEND_URL: http://backend:5000
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks: [app-network]
+
+networks:
+  app-network:
+    driver: bridge
